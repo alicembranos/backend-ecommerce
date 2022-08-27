@@ -1,0 +1,19 @@
+{
+  "name": "backend-ecommerce",
+  "version": "1.0.0",
+  "description": "API rest for Voizz e-commerce app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alicia Cembranos Bruzón",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "2.0.19"
+  },
+  "dependencies": {
+    "express": "4.18.1"
+  }
+}
