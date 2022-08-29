@@ -24,9 +24,9 @@ app.get("/albums/:id", (req, res) => {
 });
 
 //request to get users
-app.get("/users", (req, res) => {
-  res.json(data.users);
-});
+// app.get("/users", (req, res) => {
+//   res.json(data.users);
+// });
 
 //request to get images
 app.get("/images", (req, res) => {
@@ -37,6 +37,12 @@ app.get("/images", (req, res) => {
 app.get("/concerts", (req, res) => {
   res.json(data.concerts);
 });
+
+//Import authentication routes
+const authRoutes = require("./Routes/auth");
+
+//User routes middleware
+app.use("/user", authRoutes);
 
 const PORT = 3001;
 app.listen(PORT, () => {
