@@ -1,6 +1,18 @@
 const express = require("express");
 const app = express();
 const data = require("./src/data/data.json");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+//Import authentication routes
+const authRoutes = require("./Routes/auth");
+
+dotenv.config();
+
+//Connect to db
+mongoose.connect(process.env.DB_CONNECT, () => console.log("Connected to DB."));
+
+//Middleware
+app.use(express.json());
 
 //main path
 app.get("/", (req, res) => {
@@ -38,13 +50,10 @@ app.get("/concerts", (req, res) => {
   res.json(data.concerts);
 });
 
-//Import authentication routes
-const authRoutes = require("./Routes/auth");
-
 //User routes middleware
 app.use("/user", authRoutes);
 
-const PORT = 3001;
+const PORT = 3002;
 app.listen(PORT, () => {
   console.log(`Sever running at http://localhost:${PORT}/`);
 });
