@@ -1,74 +1,83 @@
 const mongoose = require("mongoose");
 
-const userWishlit = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
+const userWishlit = new mongoose.Schema(
+  {
+    id: {
+      type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    artist: {
+      type: String,
+      required: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+    },
   },
-  title: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  artist: {
-    type: String,
-    required: true,
-  },
-  img: {
-    type: String,
-    required: true,
-  },
-  year: {
-    type: Number,
-    required: true,
-  },
-});
+  { _id: false }
+);
 
-const orderItem = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
+const orderItem = new mongoose.Schema(
+  {
+    id: {
+      type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    artist: {
+      type: String,
+      required: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+    },
+    qty: {
+      type: Number,
+      required: true,
+    },
   },
-  title: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  artist: {
-    type: String,
-    required: true,
-  },
-  img: {
-    type: String,
-    required: true,
-  },
-  year: {
-    type: Number,
-    required: true,
-  },
-  qty: {
-    type: Number,
-    required: true,
-  },
-});
+  { _id: false }
+);
 
-const userOrdersList = new mongoose.Schema({
-  orderNumber: {
-    type: Number,
-    required: true,
+const userOrdersList = new mongoose.Schema(
+  {
+    orderNumber: {
+      type: Number,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
+    cartItems: [orderItem],
   },
-  date: {
-    type: String,
-    required: true,
-  },
-  cartItems: [orderItem],
-});
+  { _id: false }
+);
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -96,7 +105,7 @@ const userSchema = new mongoose.Schema({
   },
   genre: {
     type: String,
-    required:false,
+    required: false,
     default: "Man",
   },
   age: {

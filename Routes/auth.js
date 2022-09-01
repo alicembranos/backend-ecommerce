@@ -69,4 +69,36 @@ router.post("/login", async (req, res) => {
   });
 });
 
+//UPDATE WISHLIST
+router.patch("/update", async (req, res) => {
+  const filter = { email: req.body.user.email };
+  const dataToUpdate = { wishlist: req.body.wishlist };
+
+  //Check if the user exists in DB
+  const emailExist = await User.findOne(filter);
+  if (!emailExist) return res.status(400).send("<h1>User does not exist.</h1>");
+
+  const newWishList = await User.findOneAndUpdate(filter, dataToUpdate, {
+    new: true,
+  });
+
+  res.json(newWishList);
+});
+
+//UPDATE ORDERSLIST
+router.patch("/updateOrderList", async (req, res) => {
+  const filter = { email: req.body.user.email };
+  const dataToUpdate = { ordersList: req.body.ordersList };
+
+  //Check if the user exists in DB
+  const emailExist = await User.findOne(filter);
+  if (!emailExist) return res.status(400).send("<h1>User does not exist.</h1>");
+
+  const newOrdersList = await User.findOneAndUpdate(filter, dataToUpdate, {
+    new: true,
+  });
+
+  res.json(newOrdersList);
+});
+
 module.exports = router;
