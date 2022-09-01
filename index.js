@@ -59,7 +59,8 @@ app.use((req, res) => {
   });
 });
 
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
+
 app.listen(PORT, () => {
   console.log(`Sever running at http://localhost:${PORT}/`);
 });
