@@ -8,8 +8,10 @@ const registerValidation = (data) => {
     password: Joi.string().min(6).required(),
     firstname: Joi.string().min(4).required(),
     lastname: Joi.string().min(4).required(),
-    genre: Joi.string().required().default("Man"),
-    age: Joi.number().integer().min(18).max(120).required().default(18),
+    genre: Joi.string(),
+    age: Joi.number().integer().min(18).max(120),
+    wishlist: Joi.array(),
+    ordersList: Joi.array(),
   });
   return schema.validate(data);
 };

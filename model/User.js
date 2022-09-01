@@ -96,21 +96,19 @@ const userSchema = new mongoose.Schema({
   },
   genre: {
     type: String,
-    required: false,
+    required:false,
     default: "Man",
   },
   age: {
     type: Number,
     required: false,
-    default: 0,
+    default: 18,
   },
-  whislist: {
+  wishlist: {
     type: [userWishlit],
-    default: [],
   },
   ordersList: {
     type: [userOrdersList],
-    default: [],
   },
 });
 

@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const data = require("./src/data/data.json");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 //Import authentication routes
 const authRoutes = require("./Routes/auth");
+const postRoutes = require("./Routes/posts");
 
 dotenv.config();
 
@@ -12,6 +14,7 @@ dotenv.config();
 mongoose.connect(process.env.DB_CONNECT, () => console.log("Connected to DB."));
 
 //Middleware
+app.use(cors());
 app.use(express.json());
 
 //main path
@@ -35,11 +38,6 @@ app.get("/albums/:id", (req, res) => {
   res.json(album);
 });
 
-//request to get users
-// app.get("/users", (req, res) => {
-//   res.json(data.users);
-// });
-
 //request to get images
 app.get("/images", (req, res) => {
   res.json(data.images);
@@ -52,6 +50,14 @@ app.get("/concerts", (req, res) => {
 
 //User routes middleware
 app.use("/user", authRoutes);
+app.use("/post", postRoutes);
+
+app.use((req, res) => {
+  console.log(req.path);
+  res.status(404).json({
+    error: "Not found",
+  });
+});
 
 const PORT = 3002;
 app.listen(PORT, () => {
