@@ -11,7 +11,9 @@ const postRoutes = require("./Routes/posts");
 dotenv.config();
 
 //Connect to db
-mongoose.connect(process.env.DB_CONNECT, () => console.log("Connected to DB."));
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser }, () =>
+  console.log("Connected to DB.")
+);
 
 //Middleware
 app.use(cors());
